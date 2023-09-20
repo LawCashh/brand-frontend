@@ -1,0 +1,25 @@
+:host{
+  width: 100%;
+  height: 70px;
+  background-color: #eef2f4;
+}
+
+.footer{
+  color: gray;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  height: 100%;
+  &__go-back{
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+      margin-left: 10px;
+      width: 15px;
+    }
+  }
+}

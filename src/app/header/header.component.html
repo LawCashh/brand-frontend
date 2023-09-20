@@ -1,0 +1,28 @@
+<nav class="nav-top">
+  <div class="nav-top__logo">
+    <div class="nav-top__logo__img"><img src="assets/images/header/shopping-bag.svg" alt=""></div>
+    <h1>Brand</h1>
+  </div>
+  <div class="nav-top__search" *ngIf="!loadingCategories">
+    <form class="nav-top__search__form" #searchForma=ngForm novalidate>
+      <input type="text" placeholder="Pretrazi sajt"/>
+      <select id="search-dropdown" [(ngModel)]="selectedOption" name="dropdown" >
+        <option [value]="'SveKategorije'">Sve kategorije</option>
+        <option *ngFor="let category of listaKategorija" [value]="category.title">{{category.title}}</option>
+      </select>
+      <button>Pretrazi</button>
+    </form>
+  </div>
+  <div class="nav-top__options">
+    <img src="assets/images/header/shopping-cart.svg" alt="">
+    <img src="assets/images/header/user.svg" alt="">
+  </div>
+</nav>
+<nav class="nav-bottom">
+  <ul class="nav-bottom__list">
+    <li><a routerLink="/" [ngClass]="currPath=='/' ? 'blue': ''">Pocetna</a></li>
+    <li><a>Proizvodi</a></li>
+    <li><a>Akcije</a></li>
+    <li><a>Narudzbe</a></li>
+  </ul>
+</nav>
