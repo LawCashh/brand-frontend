@@ -84,4 +84,59 @@
     </div>
   </div>
 </ng-container>
+  <div class="home__magacin">
+    <div class="home__magacin__left">
+      <span class="home__magacin__left__title">
+        Jednostavan nacin da trazite proizvod koji nije u ponudi.
+      </span>
+      <span class="home__magacin__left__description">
+        Posaljite zahtjev za proizvod koji vam nije potreban a ne nalazi se u nasoj ponudi.
+        Magacioner ce da vam se javi sa informaciom u naredna 24h.
+      </span>
+    </div>
+    <div class="home__magacin__right">
+      <form class="home__magacin__right__form">
+        <span class="home__magacin__right__form__title">
+          Posaljite upit magacioneru
+        </span>
+        <input type="text" name="" id="" class="home__magacin__right__form__input" placeholder="Sta vam je potrebno?">
+        <textarea placeholder="Opisite zahtjev"></textarea>
+        <div class="home__magacin__right__form__kolicinadiv">
+          <div class="home__magacin__right__form__kolicinadiv__title">
+            Kolicina
+          </div>
+          <select class="home__magacin__right__form__kolicinadiv__kolicina">
+            <option selected>1</option>
+            <option>2</option>
+          </select>
+        </div>
+        <div class="home__magacin__right__form__buttondiv">
+          <button class="home__magacin__right__form__buttondiv__button">
+            Posaljite zahtjev
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="home__proizvodi-title">
+    Proizvodi koje izdvajamo
+  </div>
+  <div class="home__proizvodi" *ngIf="!loadingRandomProducts">
+      <div *ngFor="let product of randomProducts" class="home__proizvodi__proizvod">
+        <img src="{{product.imagePath}}" alt="">
+        <span><span class="home__proizvodi__proizvod__cijena">${{product.price}}</span><br>
+          <span class="home__proizvodi__proizvod__naslov">{{product.title}}</span>
+          </span>
+      </div>
+  </div>
+  <div class="home__usluge-title">
+    Dodatne usluge
+  </div>
+  <div class="home__usluge">
+    <div *ngFor="let utility of utilities" class="home__usluge__usluga">
+      <img src="{{utility.imagePath}}" alt="" class="home__usluge__usluga__slika">
+      <span class="home__usluge__usluga__naslov">{{utility.title}}</span>
+      <div class="home__usluge__usluga__ikonica"><img src="{{utility.iconPath}}" alt=""></div>
+    </div>
+  </div>
 </main>

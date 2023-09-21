@@ -9,6 +9,7 @@ import { DataService } from '../data.service';
 import { Category } from '../models/category.model';
 import { interval, Subscription } from 'rxjs';
 import { Product } from '../models/product.model';
+import { Utility } from '../models/utility.model';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   loadingIzdvajamoKategorije = true;
   loadingRandomSubCategorie1 = true;
   loadingRandomSubCategorie2 = true;
+  loadingRandomProducts = true;
+  loadingUtilities = true;
   mainKategorije: Category[] = [];
   subKategorije: Category[] = [];
   discountedKategorije: Category[] = [];
@@ -37,8 +40,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     parent: null,
   };
   randomSubcategories: Category[] = [];
+  //ove pripadaju ovome iznad, one dvije sekcije za 8
   randomProducts1: Product[] = [];
   randomProducts2: Product[] = [];
+  //ovo je donja 2x5 sekcija
+  randomProducts: Product[] = [];
+  utilities: Utility[] = [];
 
   selectedIzdvajamoSubCategories: Category[] = [];
   previousCarouselIndex = 0;
@@ -54,6 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadKategorije();
+    this.loadUtilities();
     this.automaticSliding();
   }
 
@@ -72,6 +80,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loadingIzdvajamoKategorije = true;
     this.loadingRandomSubCategorie1 = true;
     this.loadingRandomSubCategorie2 = true;
+    this.loadingRandomProducts = true;
     this.http
       .getData<{ status: string; message: string; data: Category[] }>(
         'http://localhost:3000/categories/parent-categories',
@@ -100,18 +109,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             )
             .subscribe({
               next: (res) => {
-                console.log(res);
                 this.selectedIzdvajamoSubCategories = res.subCategories;
-                console.log(
-                  Math.floor(
-                    Math.random() * this.selectedIzdvajamoSubCategories.length,
-                  ),
-                );
-                console.log(
-                  Math.floor(
-                    Math.random() * this.selectedIzdvajamoSubCategories.length,
-                  ),
-                );
                 this.randomSubcategories.push(
                   this.selectedIzdvajamoSubCategories[
                     Math.floor(
@@ -128,7 +126,6 @@ export class HomeComponent implements OnInit, OnDestroy {
                     )
                   ],
                 );
-                console.log(this.randomSubcategories);
                 this.http
                   .getData<{
                     status: string;
@@ -141,7 +138,6 @@ export class HomeComponent implements OnInit, OnDestroy {
                     next: (res) => {
                       this.randomProducts1 = res.data;
                       this.loadingRandomSubCategorie1 = false;
-                      console.log(this.randomProducts1);
                     },
                     error: (err) => {
                       console.log(`Error uzimanja proizvoda ${err}`);
@@ -159,7 +155,6 @@ export class HomeComponent implements OnInit, OnDestroy {
                     next: (res) => {
                       this.randomProducts2 = res.data;
                       this.loadingRandomSubCategorie2 = false;
-                      console.log(this.randomProducts2);
                     },
                     error: (err) => {
                       console.log(`Error uzimanja proizvoda ${err}`);
@@ -189,6 +184,36 @@ export class HomeComponent implements OnInit, OnDestroy {
         },
         error: (err) => {
           console.log(`Error uzimanja discounted kategorija ${err}`);
+        },
+      });
+    this.http
+      .getData<{ status: string; message: string; data: Product[] }>(
+        'http://localhost:3000/products?limit=10',
+      )
+      .subscribe({
+        next: (res) => {
+          this.randomProducts = res.data;
+          this.loadingRandomProducts = false;
+        },
+        error: (err) => {
+          console.log(`Error uzimanja random producata ${err}`);
+        },
+      });
+  }
+
+  loadUtilities() {
+    this.loadingUtilities = true;
+    this.http
+      .getData<{ status: string; message: string; data: Utility[] }>(
+        'http://localhost:3000/utilities',
+      )
+      .subscribe({
+        next: (res) => {
+          this.loadingUtilities = false;
+          this.utilities = res.data;
+        },
+        error: (err) => {
+          console.log(`Error uzimanja utilityja ${err}`);
         },
       });
   }
