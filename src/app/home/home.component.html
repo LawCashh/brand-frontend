@@ -1,1 +1,39 @@
-<p>home works!</p>
+<main class="home">
+  <div class="home__kategorije">
+    <ul class="home__kategorije__sidebar" *ngIf="!loadingMainKategorije">
+      <li *ngFor="let mainKategorija of mainKategorije"><a>{{mainKategorija.title}}</a></li>
+    </ul>
+    <div class="home__kategorije__slider-div">
+      <div class="home__kategorije__slider-div__dots">
+        <input *ngFor="let subkategorija of mainKategorije; index as i" type="radio" name="kategorija" id="{{i}}"
+               [checked]="selectedCarouselIndex == i"
+               (click)="goTo(i)">
+      </div>
+      <button class="home__kategorije__slider-div__left" (click)="goTo('left')"><</button>
+      <button class="home__kategorije__slider-div__right" (click)="goTo('right')">></button>
+      <div class="home__kategorije__slider-div__top" #slidertop [ngStyle]="{'width': carouselLength*100 + '%'}">
+        <img *ngFor="let subkategorija of mainKategorije" [ngStyle]="{'width': 100/carouselLength + '%'}"
+             src="{{subkategorija.imagePath}}" alt="">
+      </div>
+      <div class="home__kategorije__slider-div__bottom" #sliderbottom [ngStyle]="{'width': carouselLength*100 + '%'}">
+        <div class="home__kategorije__slider-div__bottom__desc" *ngFor="let subkategorija of mainKategorije"
+             [ngStyle]="{'width': 100/carouselLength + '%'}">
+          <span>{{subkategorija.title}}</span>
+          <div class="home__kategorije__slider-div__bottom__desc__popust">Popust 40%</div>
+        </div>
+      </div>
+    </div>
+    <div class="home__kategorije__akcije" *ngIf="!loadingDiscountedKategorije">
+      <div class="home__kategorije__akcije__kategorija" *ngFor="let discountedKategorija of discountedKategorije">
+        <span>{{discountedKategorija.title}}</span>
+        <img src="{{discountedKategorija.imagePath}}" alt="">
+      </div>
+      <button>POGLEDAJ AKCIJE</button>
+    </div>
+  </div>
+
+  <div>
+  </div>
+  <div>
+  </div>
+</main>
