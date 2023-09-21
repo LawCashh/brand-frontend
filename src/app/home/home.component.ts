@@ -8,6 +8,7 @@ import {
 import { DataService } from '../data.service';
 import { Category } from '../models/category.model';
 import { interval, Subscription } from 'rxjs';
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,9 @@ import { interval, Subscription } from 'rxjs';
 export class HomeComponent implements OnInit, OnDestroy {
   loadingMainKategorije: boolean = true;
   loadingDiscountedKategorije: boolean = true;
+  loadingIzdvajamoKategorije = true;
+  loadingRandomSubCategorie1 = true;
+  loadingRandomSubCategorie2 = true;
   mainKategorije: Category[] = [];
   subKategorije: Category[] = [];
   discountedKategorije: Category[] = [];
@@ -26,6 +30,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     imagePath: null,
     parent: null,
   };
+  selectedIzdvajamoCategory: Category = {
+    _id: '',
+    title: '',
+    imagePath: null,
+    parent: null,
+  };
+  randomSubcategories: Category[] = [];
+  randomProducts1: Product[] = [];
+  randomProducts2: Product[] = [];
+
+  selectedIzdvajamoSubCategories: Category[] = [];
   previousCarouselIndex = 0;
   selectedCarouselIndex = 0;
   carouselLength = 0;
@@ -54,6 +69,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   loadKategorije() {
     this.loadingMainKategorije = true;
+    this.loadingIzdvajamoKategorije = true;
+    this.loadingRandomSubCategorie1 = true;
+    this.loadingRandomSubCategorie2 = true;
     this.http
       .getData<{ status: string; message: string; data: Category[] }>(
         'http://localhost:3000/categories/parent-categories',
@@ -64,6 +82,96 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.loadingMainKategorije = false;
           this.selectedMainCategory = this.mainKategorije[0];
           this.carouselLength = this.mainKategorije.length;
+          // Kada bude trebalo da bude dinamicno za izdvajamo panel
+          this.selectedIzdvajamoCategory =
+            this.mainKategorije[
+              Math.floor(Math.random() * this.mainKategorije.length)
+            ];
+          if (this.selectedIzdvajamoCategory.title == 'Alati')
+            this.selectedIzdvajamoCategory = this.mainKategorije[0];
+          // this.selectedIzdvajamoCategory = this.mainKategorije[1];
+          this.http
+            .getData<{
+              status: string;
+              message: string;
+              subCategories: Category[];
+            }>(
+              `http://localhost:3000/categories/${this.selectedIzdvajamoCategory._id}/subcategories`,
+            )
+            .subscribe({
+              next: (res) => {
+                console.log(res);
+                this.selectedIzdvajamoSubCategories = res.subCategories;
+                console.log(
+                  Math.floor(
+                    Math.random() * this.selectedIzdvajamoSubCategories.length,
+                  ),
+                );
+                console.log(
+                  Math.floor(
+                    Math.random() * this.selectedIzdvajamoSubCategories.length,
+                  ),
+                );
+                this.randomSubcategories.push(
+                  this.selectedIzdvajamoSubCategories[
+                    Math.floor(
+                      Math.random() *
+                        this.selectedIzdvajamoSubCategories.length,
+                    )
+                  ],
+                );
+                this.randomSubcategories.push(
+                  this.selectedIzdvajamoSubCategories[
+                    Math.floor(
+                      Math.random() *
+                        this.selectedIzdvajamoSubCategories.length,
+                    )
+                  ],
+                );
+                console.log(this.randomSubcategories);
+                this.http
+                  .getData<{
+                    status: string;
+                    message: string;
+                    data: Product[];
+                  }>(
+                    `http://localhost:3000/categories/${this.randomSubcategories[0]._id}/products`,
+                  )
+                  .subscribe({
+                    next: (res) => {
+                      this.randomProducts1 = res.data;
+                      this.loadingRandomSubCategorie1 = false;
+                      console.log(this.randomProducts1);
+                    },
+                    error: (err) => {
+                      console.log(`Error uzimanja proizvoda ${err}`);
+                    },
+                  });
+                this.http
+                  .getData<{
+                    status: string;
+                    message: string;
+                    data: Product[];
+                  }>(
+                    `http://localhost:3000/categories/${this.randomSubcategories[1]._id}/products`,
+                  )
+                  .subscribe({
+                    next: (res) => {
+                      this.randomProducts2 = res.data;
+                      this.loadingRandomSubCategorie2 = false;
+                      console.log(this.randomProducts2);
+                    },
+                    error: (err) => {
+                      console.log(`Error uzimanja proizvoda ${err}`);
+                    },
+                  });
+
+                this.loadingIzdvajamoKategorije = false;
+              },
+              error: (err) => {
+                console.log(`Error uzimanja sub kategorija ${err}`);
+              },
+            });
         },
         error: (err) => {
           console.log(`Error uzimanja main kategorija ${err}`);
@@ -84,6 +192,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         },
       });
   }
+
+  // getWidth() {
+  //   const numItems = this.selectedIzdvajamoSubCategories.length;
+  //   return `calc(100% / ${numItems > 5 ? 5 : numItems}px)`;
+  // }
 
   goTo(i: 'left' | 'right' | number) {
     this.timerSubscription.unsubscribe();

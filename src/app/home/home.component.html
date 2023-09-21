@@ -32,8 +32,56 @@
     </div>
   </div>
 
-  <div>
+  <div class="home__izdvajamo" *ngIf="!loadingIzdvajamoKategorije">
+    <div class="home__izdvajamo__kategorija">
+      <span>
+        Posebno izdvajamo
+      </span>
+      <span>
+        {{selectedIzdvajamoCategory.title}}
+      </span>
+      <button>
+        Pogledaj sve
+      </button>
+    </div>
+    <div class="home__izdvajamo__podkategorije">
+      <div *ngFor="let subcategory of selectedIzdvajamoSubCategories | slice:0:5;"
+           class="home__izdvajamo__podkategorije__podkategorija">
+        <img src="{{subcategory.imagePath}}" alt="">
+        <span class="home__izdvajamo__podkategorije__podkategorija__naslov">
+          {{subcategory.title}}
+        </span>
+        <span>
+          -40%
+        </span>
+      </div>
+    </div>
   </div>
-  <div>
+<ng-container *ngIf="!loadingRandomSubCategorie1 && !loadingRandomSubCategorie2" >
+  <div class="home__subcategory" *ngFor="let subcategory of randomSubcategories; index as i">
+    <div class="home__subcategory__titlediv"
+         [ngStyle]="i == 1 ? {'background-color': '#ffe0b0'} : {'background-color': '#3af9ed'} ">
+      <span class="home__subcategory__titlediv__title">
+        {{subcategory.title}}
+      </span>
+      <img src="{{subcategory.imagePath}}" alt="">
+    </div>
+    <div class="home__subcategory__products" *ngIf="i == 0">
+      <div class="home__subcategory__products__product" *ngFor="let product of randomProducts1 | slice:0:8; index as i">
+        <span class="home__subcategory__products__product__title">{{product.title}}</span>
+        <span class="home__subcategory__products__product__code">Kod proizvoda:<br>{{product.code}}</span>
+        <span class="home__subcategory__products__product__price">{{product.price}}€</span>
+        <img src="{{product.imagePath}}" alt="">
+      </div>
+    </div>
+    <div class="home__subcategory__products" *ngIf="i == 1">
+      <div class="home__subcategory__products__product" *ngFor="let product of randomProducts2 | slice:0:8; index as i">
+        <span class="home__subcategory__products__product__title">{{product.title}}</span>
+        <span class="home__subcategory__products__product__code">Kod proizvoda:<br>{{product.code}}</span>
+        <span class="home__subcategory__products__product__price">{{product.price}}€</span>
+        <img src="{{product.imagePath}}" alt="">
+      </div>
+    </div>
   </div>
+</ng-container>
 </main>
