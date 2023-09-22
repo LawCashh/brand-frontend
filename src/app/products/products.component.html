@@ -1,0 +1,83 @@
+<main class="products">
+  <div class="products__filters">
+    <div class="products__filters__filter-kategorije">
+        <span class="products__filters__filter-title">Kategorije</span>
+        <img src="assets/images/footer/arrow-up.svg" class="products__filters__filter-arrow" alt="">
+        <ul class="products__filters__filter-kategorije__lista">
+          <li>Plastika</li>
+          <li>Higijena</li>
+          <li>Autokozmetika</li>
+          <li>Alati</li>
+        </ul>
+        <button class="products__filters__filter-button no-margin">Prikazi sve</button>
+    </div>
+    <div class="products__filters__filter-brendovi">
+      <span class="products__filters__filter-title">Brendovi</span>
+      <img src="assets/images/footer/arrow-up.svg" class="products__filters__filter-arrow" alt="">
+      <div class="products__filters__filter-brendovi__checkboxlist">
+        <label>
+          <input type="checkbox" name="brand1"> A.S.C - HEMIK
+        </label>
+        <label>
+          <input type="checkbox" name="brand2"> Agro - Trend STR
+        </label>
+        <label>
+          <input type="checkbox" name="brand3"> Agromarket
+        </label>
+        <label>
+          <input type="checkbox" name="brand4"> Actiwa
+        </label>
+        <label>
+          <input type="checkbox" name="brand5"> Al. I. Srl.
+        </label>
+      </div>
+      <button class="products__filters__filter-button">Prikazi sve</button>
+    </div>
+    <div class="products__filters__filter-distributeri">
+      <span class="products__filters__filter-title">Brendovi</span>
+      <img src="assets/images/footer/arrow-up.svg" class="products__filters__filter-arrow" alt="">
+      <div class="products__filters__filter-distributeri__checkboxlist">
+        <label>
+          <input type="checkbox" name="brand1"> Metalac
+        </label>
+        <label>
+          <input type="checkbox" name="brand2"> Andjelic plast D.O.O
+        </label>
+        <label>
+          <input type="checkbox" name="brand3"> Plastic D.O.O
+        </label>
+        <label>
+          <input type="checkbox" name="brand4"> Modern Trade
+        </label>
+        <label>
+          <input type="checkbox" name="brand5"> TDC
+        </label>
+      </div>
+      <button class="products__filters__filter-button">Prikazi sve</button>
+    </div>
+    <div class="products__filters__filter-raspon">
+      <span class="products__filters__filter-title">Raspon cijena</span>
+      <img src="assets/images/footer/arrow-up.svg" class="products__filters__filter-arrow" alt="">
+      <div class="products__filters__filter-raspon__slider">
+        <ngx-slider [(value)]="value" [options]="options"></ngx-slider>
+      </div>
+      <div class="products__filters__filter-raspon__fields">
+        <div class="products__filters__filter-raspon__fields__field">
+          <span>Min</span>
+          <input placeholder="0" type="text" name="" id="">
+        </div>
+        <div class="products__filters__filter-raspon__fields__field">
+          <span>Max</span>
+          <input placeholder="99999" type="text" name="" id="">
+        </div>
+      </div>
+      <div class="products__filters__filter-raspon__button" >
+        <button>Primjeni</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="products__productlist">
+
+  </div>
+</main>

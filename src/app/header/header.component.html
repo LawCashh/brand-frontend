@@ -1,5 +1,5 @@
 <nav class="nav-top">
-  <div class="nav-top__logo">
+  <div class="nav-top__logo" routerLink="/" >
     <div class="nav-top__logo__img"><img src="assets/images/header/shopping-bag.svg" alt=""></div>
     <h1>Brand</h1>
   </div>
@@ -21,7 +21,7 @@
 <nav class="nav-bottom">
   <ul class="nav-bottom__list">
     <li><a routerLink="/" [ngClass]="currPath=='/' ? 'blue': ''">Pocetna</a></li>
-    <li><a>Proizvodi</a></li>
+    <li><a routerLink="/products" [ngClass]="currPath=='/products' ? 'blue': ''">Proizvodi</a></li>
     <li><a>Akcije</a></li>
     <li><a>Narudzbe</a></li>
   </ul>
