@@ -78,6 +78,71 @@
   </div>
 
   <div class="products__productlist">
+    <div class="products__productlist__filteri">
+      <div class="products__productlist__filteri__lijevo" >
+        <select id="company-dropdown" [(ngModel)]="selectedOption" name="dropdown" >
+          <option [value]="'none'">Odaberi kompaniju</option>
+          <!--        ovdje ako bude trebalo ovo da se implementira -->
+        </select>
+        <span>&#9432;</span>
+      </div>
+      <div class="products__productlist__filteri__desno" >
+        <img src="assets/images/utilities/magnifier-flipped.svg" alt="">
+        <input type="text" name="nazivProizvoda" id="proizvod-input" placeholder="Pretrazi proizvode">
+      </div>
+    </div>
+    <div class="products__productlist__proizvodi" *ngIf="!isLoadingProducts">
+      <div class="products__productlist__proizvodi__proizvod" *ngFor="let product of products">
+        <div class="products__productlist__proizvodi__proizvod__main">
+          <div class="products__productlist__proizvodi__proizvod__main__glavno">
+            <div class="products__productlist__proizvodi__proizvod__main__glavno__lijevo">
+              <img src="{{product.imagePath}}" alt="">
+            </div>
+            <div class="products__productlist__proizvodi__proizvod__main__glavno__desno">
+              <span class="products__productlist__proizvodi__proizvod__main__glavno__desno__naslov">{{product.title}}</span>
+              <span class="products__productlist__proizvodi__proizvod__main__glavno__desno__cijena">{{product.price}}€</span>
+              <div class="products__productlist__proizvodi__proizvod__main__glavno__desno__kodpopust">
+                <span>Kod proizvoda: {{product.code}}</span>
+                <img src="assets/images/products/copy.svg" alt="">
+                <span>&#8226;</span>
+                <span *ngIf="product.discount > 0" class="green">Popust: {{product.discount}}%</span>
+                <span *ngIf="product.discount == 0" class="orange">Popust: ovaj proizvod nije na popustu</span>
+              </div>
+              <span class="products__productlist__proizvodi__proizvod__main__glavno__desno__brkomada"
+                    *ngIf="product.numAvailable>0">{{product.numAvailable}} dostupna komada</span>
+              <span class="products__productlist__proizvodi__proizvod__main__glavno__desno__brkomada red"
+                    *ngIf="product.numAvailable == 0">Nema dostupnih komada</span>
+            </div>
+          </div>
+          <div class="products__productlist__proizvodi__proizvod__main__kolicinadiv">
+            <span class="products__productlist__proizvodi__proizvod__main__kolicinadiv__naslov">Kolicina</span>
+            <div class="products__productlist__proizvodi__proizvod__main__kolicinadiv__field">
+              <input placeholder="1" type="text" name="" id="">
+              <span>-</span>
+              <span>+</span>
+            </div>
+            <button class="products__productlist__proizvodi__proizvod__main__kolicinadiv__button">Dodaj u korpu</button>
+          </div>
+        </div>
+        <div class="products__productlist__proizvodi__proizvod__expandedinfo">
 
+        </div>
+      </div>
+    </div>
+    <div class="products__productlist__proizvodi__paginacija">
+      <div class="products__productlist__proizvodi__paginacija__prikazi">
+        <select id="company-dropdown" [(ngModel)]="selectedPrikazi" name="dropdown-prikazi" >
+          <option [value]="10">Prikazi 10</option>
+          <!--        ovdje ako bude trebalo ovo da se implementira -->
+        </select>
+      </div>
+      <div class="products__productlist__proizvodi__paginacija__stranice">
+        <div class="products__productlist__proizvodi__paginacija__stranice__nazad"><</div>
+        <div class="products__productlist__proizvodi__paginacija__stranice__stranica">1</div>
+        <div class="products__productlist__proizvodi__paginacija__stranice__stranica">2</div>
+        <div class="products__productlist__proizvodi__paginacija__stranice__stranica">3</div>
+        <div class="products__productlist__proizvodi__paginacija__stranice__naprijed">></div>
+      </div>
+    </div>
   </div>
 </main>

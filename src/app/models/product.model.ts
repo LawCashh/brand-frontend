@@ -4,7 +4,7 @@ export interface Product {
   code: string;
   price: number;
   imagePath: string | null;
-  numAvailable: number | null;
+  numAvailable: number;
   parent: string | null;
   brand: string;
   distributer: string;

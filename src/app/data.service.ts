@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,5 +10,9 @@ export class DataService {
 
   getData<T>(url: string): Observable<T> {
     return this.http.get<T>(url);
+  }
+
+  getDataWithParams<T>(url: string, params: HttpParams): Observable<T> {
+    return this.http.get<T>(url, { params });
   }
 }
