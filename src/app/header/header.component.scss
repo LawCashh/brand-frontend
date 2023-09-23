@@ -149,3 +149,92 @@
 .blue {
   color: #0067ff !important;
 }
+
+@media (min-width: 993px) and (max-width: 1200px) {
+  .nav-top{
+    &__search{
+      &__form{
+        select{
+          width: 30%;
+        }
+        button{
+          width: 20%;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .nav-top{
+    &__search{
+      &__form{
+        select{
+          width: 30%;
+        }
+        button{
+          width: 20%;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .nav-top {
+    &__search {
+      &__form {
+        input{
+          width: 30%;
+        }
+        select {
+          width: 40%;
+        }
+        button {
+          width: 20%;
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 576px) {
+  :host{
+    height: 240px;
+  }
+  .nav-top{
+    height: 75%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    &__logo{
+      grid-row: 1;
+      grid-column: 1;
+    }
+    &__search{
+      grid-row: 2;
+      grid-column: 1 / span 2;
+      &__form {
+        input{
+          width: 35%;
+        }
+        select {
+          width: 40%;
+        }
+        button {
+          width: 25%;
+        }
+      }
+
+    }
+    &__options{
+      grid-row: 1;
+      grid-column: 2;
+    }
+  }
+  .nav-bottom{
+    height: 25%;
+  }
+}
+
+
