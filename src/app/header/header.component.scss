@@ -234,6 +234,9 @@
   }
   .nav-bottom{
     height: 25%;
+    &__list{
+      font-size: 0.8em;
+    }
   }
 }
 
