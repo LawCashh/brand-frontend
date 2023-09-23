@@ -347,7 +347,7 @@
         justify-content: flex-end;
         align-items: center;
         &__prikazi{
-          width: 10%;
+          width: 15%;
           height: 100%;
           display: flex;
           align-items: center;
@@ -428,3 +428,598 @@
   color: #fa3434;
 }
 
+@media (min-width: 993px) and (max-width: 1200px) {
+  //:host{
+  //  background-color: pink;
+  //}
+  .products{
+    &__productlist{
+      &__filteri{
+        &__lijevo{
+          width: 35%;
+        }
+        &__desno{
+          width: 35%;
+        }
+      }
+      &__proizvodi{
+        &__paginacija{
+          &__prikazi{
+            width: 20%;
+          }
+          &__stranice{
+            &__nazad,&__naprijed,&__stranica{
+            }
+            &__nazad{
+            }
+            &__naprijed{
+            }
+            &__stranica{
+              &:nth-child(2){
+              }
+              &:nth-child(3){
+              }
+              &:nth-child(4){
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  //:host{
+  //  background-color: pink;
+  //}
+  .products{
+    &__productlist{
+      &__filteri{
+        &__lijevo{
+          width: 40%;
+        }
+        &__desno{
+          width: 35%;
+        }
+      }
+      &__proizvodi{
+        &__proizvod{
+          padding: 15px;
+          width: calc(100% - 30px);
+          &__main{
+            &__glavno{
+              height: 100%;
+              width: 70%;
+              &__lijevo{
+                width: 25%;
+                img{
+                  width: 75%;
+                  height: 75%;
+                  object-fit: cover;
+                }
+              }
+              &__desno{
+                width: 75%;
+                &__naslov, &__cijena, &__kodpopust, &__brkomada{
+                  height: 25%;
+                  width: 100%;
+                  display: flex;
+                  align-items: center;
+                }
+                &__naslov{
+                  font-size: 1.3em;
+                }
+                &__cijena{
+                  font-weight: bold;
+                }
+                &__kodpopust{
+                  img{
+                    margin-right: 10px;
+                    height: 30%;
+                  }
+                  span{
+                    margin-right: 5px;
+                    &:first-child{
+                      font-size: 0.8em;
+                    }
+                    &:nth-child(3){
+                      font-size: 1.5em;
+                    }
+                    &:last-child{
+                      font-size: 0.8em;
+                    }
+                  }
+                }
+                &__brkomada{
+                  font-size: 0.8em;
+                }
+              }
+            }
+            &__kolicinadiv{
+              width: 30%;
+              &__naslov{
+                font-size: 1.3em;
+              }
+              &__field{
+                margin: 10px 0;
+                height: calc(41% - 20px);
+                input{
+                  width: calc(60% - 10px);
+                  padding: 0;
+                  padding-right: 10px;
+                  font-size: 1em;
+                }
+                span{
+                  width: 25px;
+                  height: 25px;
+                  &:nth-child(2){
+                    font-size: 2em;
+                  }
+                  &:last-child{
+                    font-size: 1.2em;
+                  }
+                }
+              }
+              &__button{
+                font-size: 1em;
+              }
+            }
+          }
+        }
+        &__paginacija{
+          &__prikazi{
+            width: 20%;
+          }
+          &__stranice{
+            &__nazad,&__naprijed,&__stranica{
+            }
+            &__nazad{
+            }
+            &__naprijed{
+            }
+            &__stranica{
+              &:nth-child(2){
+              }
+              &:nth-child(3){
+              }
+              &:nth-child(4){
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  //:host{
+  //  background-color: pink;
+  //}
+  .products{
+    &__filters{
+      height: auto;
+      width: calc(24% - 10px);
+      margin-right: 10px;
+      &__filter-kategorije{
+        &__lista{
+          li{
+            margin: 10px 0;
+            font-size: 0.9em;
+          }
+        }
+      }
+      &__filter-brendovi, &__filter-distributeri{
+        &__checkboxlist{
+          margin-top: 15px;
+          label{
+            font-size: 0.9em;
+            input{
+              margin: 5px 0;
+            }
+          }
+        }
+      }
+      &__filter-raspon{
+        &__slider{
+          margin-top: 20px;
+        }
+        &__fields {
+          &__field{
+            span{
+              font-size: 0.9em;
+            }
+            input{
+            }
+          }
+        }
+        &__button{
+          button{
+            font-size: 0.9em;
+          }
+        }
+      }
+      &__filter-title{
+        font-size: 0.9em;
+        font-weight: bold;
+        margin-bottom: 100px;
+      }
+      &__filter-button{
+        margin-top: 5px;
+        color: #0067ff;
+        background-color: transparent;
+        border: none;
+        font-size: 0.9em;
+        padding: 0;
+        &:first-child{
+          margin-top: 0;
+          background-color: blue;
+        }
+      }
+      &__filter-arrow{
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        background-color: transparent;
+        border: none;
+        height: 10px;
+        width: 10px;
+      }
+    }
+    &__productlist{
+      &__filteri{
+        &__lijevo{
+          width: 52%;
+        }
+        &__desno{
+          width: 42%;
+          font-size: 0.9em;
+        }
+      }
+      &__proizvodi{
+        &__proizvod{
+          padding: 15px;
+          width: calc(100% - 30px);
+          &__main{
+            &__glavno{
+              height: 100%;
+              width: 70%;
+              &__lijevo{
+                width: 25%;
+                img{
+                  width: 75%;
+                  height: 75%;
+                  object-fit: cover;
+                }
+              }
+              &__desno{
+                width: 75%;
+                &__naslov, &__cijena, &__kodpopust, &__brkomada{
+                  height: 25%;
+                  width: 100%;
+                  display: flex;
+                  align-items: center;
+                }
+                &__naslov{
+                  font-size: 1.3em;
+                }
+                &__cijena{
+                  font-weight: bold;
+                }
+                &__kodpopust{
+                  img{
+                    margin-right: 10px;
+                    height: 30%;
+                  }
+                  span{
+                    margin-right: 5px;
+                    &:first-child{
+                      font-size: 0.8em;
+                    }
+                    &:nth-child(3){
+                      font-size: 1.5em;
+                    }
+                    &:last-child{
+                      font-size: 0.8em;
+                    }
+                  }
+                }
+                &__brkomada{
+                  font-size: 0.8em;
+                }
+              }
+            }
+            &__kolicinadiv{
+              width: 30%;
+              &__naslov{
+                font-size: 1.3em;
+              }
+              &__field{
+                margin: 10px 0;
+                height: calc(41% - 20px);
+                input{
+                  width: calc(60% - 10px);
+                  padding: 0;
+                  padding-right: 10px;
+                  font-size: 1em;
+                }
+                span{
+                  width: 25px;
+                  height: 25px;
+                  &:nth-child(2){
+                    font-size: 2em;
+                  }
+                  &:last-child{
+                    font-size: 1.2em;
+                  }
+                }
+              }
+              &__button{
+                font-size: 1em;
+              }
+            }
+          }
+        }
+        &__paginacija{
+          &__prikazi{
+            width: 30%;
+          }
+          &__stranice{
+            width: 40%;
+            &__nazad,&__naprijed,&__stranica{
+            }
+            &__nazad{
+            }
+            &__naprijed{
+            }
+            &__stranica{
+              &:nth-child(2){
+              }
+              &:nth-child(3){
+              }
+              &:nth-child(4){
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  //:host{
+  //  background-color: pink;
+  //}
+  .products{
+    &__filters{
+      height: auto;
+      width: calc(40% - 10px);
+      margin-right: 10px;
+      &__filter-kategorije{
+        &__lista{
+          li{
+            margin: 10px 0;
+            font-size: 0.9em;
+          }
+        }
+      }
+      &__filter-brendovi, &__filter-distributeri{
+        &__checkboxlist{
+          margin-top: 15px;
+          label{
+            font-size: 0.9em;
+            input{
+              margin: 5px 0;
+            }
+          }
+        }
+      }
+      &__filter-raspon{
+        &__slider{
+          margin-top: 20px;
+        }
+        &__fields {
+          &__field{
+            span{
+              font-size: 0.9em;
+            }
+            input{
+            }
+          }
+        }
+        &__button{
+          button{
+            font-size: 0.9em;
+          }
+        }
+      }
+      &__filter-title{
+        font-size: 0.9em;
+        font-weight: bold;
+        margin-bottom: 100px;
+      }
+      &__filter-button{
+        margin-top: 5px;
+        color: #0067ff;
+        background-color: transparent;
+        border: none;
+        font-size: 0.9em;
+        padding: 0;
+        &:first-child{
+          margin-top: 0;
+          background-color: blue;
+        }
+      }
+      &__filter-arrow{
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        background-color: transparent;
+        border: none;
+        height: 10px;
+        width: 10px;
+      }
+    }
+    &__productlist{
+      width: 60%;
+      &__filteri{
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        &__lijevo{
+          width: 100%;
+          select{
+            height: 80%;
+            font-size: 0.7em;
+            background-size: 1em;
+          }
+        }
+        &__desno{
+          width: 100%;
+          input[type=text]{
+            height: 80%;
+            font-size: 0.8em;
+          }
+          img{
+            height: 30%;
+          }
+        }
+      }
+      &__proizvodi{
+        &__proizvod{
+          height: 400px;
+          padding: 10px;
+          width: calc(100% - 20px);
+          &__main{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            &__glavno{
+              height: 70%;
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              &__lijevo{
+                height: 35%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img{
+                  width: 75%;
+                  height: 75%;
+                  object-fit: cover;
+                }
+              }
+              &__desno{
+                height: 65%;
+                width: 100%;
+                &__naslov, &__cijena, &__kodpopust, &__brkomada{
+                }
+                &__naslov{
+                  height: 20%;
+                  font-size: 1.3em;
+                }
+                &__cijena{
+                  height: 20%;
+                }
+                &__kodpopust{
+                  height: 35%;
+                  img{
+                    margin-right: 5px;
+                    height: 20%;
+                  }
+                  span{
+                    margin-right: 5px;
+                    &:first-child{
+                      font-size: 0.8em;
+                    }
+                    &:nth-child(3){
+                      font-size: 1.5em;
+                    }
+                    &:last-child{
+                      font-size: 0.8em;
+                    }
+                  }
+                }
+                &__brkomada{
+                  height: 25%;
+                  font-size: 0.8em;
+                }
+              }
+            }
+            &__kolicinadiv{
+              height: 30%;
+              width: 100%;
+              &__naslov{
+                font-size: 1.3em;
+              }
+              &__field{
+                margin: 10px 0;
+                height: calc(41% - 20px);
+                input{
+                  width: calc(60% - 10px);
+                  padding: 0;
+                  padding-right: 10px;
+                  font-size: 1em;
+                }
+                span{
+                  width: 25px;
+                  height: 25px;
+                  &:nth-child(2){
+                    font-size: 2em;
+                  }
+                  &:last-child{
+                    font-size: 1.2em;
+                  }
+                }
+              }
+              &__button{
+                font-size: 1em;
+              }
+            }
+          }
+        }
+        &__paginacija{
+          &__prikazi{
+            width: 50%;
+            font-size: 0.8em;
+            margin-right: 5px;
+            select{
+              padding: 0;
+              padding-left: 5px;
+              background-size: 1em;
+            }
+          }
+          &__stranice{
+            width: 50%;
+            font-size: 0.9em;
+            &__nazad,&__naprijed,&__stranica{
+            }
+            &__nazad{
+            }
+            &__naprijed{
+            }
+            &__stranica{
+              &:nth-child(2){
+              }
+              &:nth-child(3){
+              }
+              &:nth-child(4){
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
