@@ -1,6 +1,10 @@
 <main class="home">
   <div class="home__kategorije">
-    <ul class="home__kategorije__sidebar" *ngIf="!loadingMainKategorije">
+    <select class="home__kategorije__upbar" id="company-dropdown" [(ngModel)]="selectedUpBar" name="dropdown"
+            *ngIf="!loadingMainKategorije && isSmallScreen">
+      <option *ngFor="let mainKategorija of mainKategorije" [value]="mainKategorija.title">{{mainKategorija.title}}</option>
+    </select>
+    <ul class="home__kategorije__sidebar" *ngIf="!loadingMainKategorije && !isSmallScreen">
       <li *ngFor="let mainKategorija of mainKategorije"><a>{{mainKategorija.title}}</a></li>
     </ul>
     <div class="home__kategorije__slider-div">

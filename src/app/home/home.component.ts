@@ -4,12 +4,14 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  HostListener,
 } from '@angular/core';
 import { DataService } from '../data.service';
 import { Category } from '../models/category.model';
 import { interval, Subscription } from 'rxjs';
 import { Product } from '../models/product.model';
 import { Utility } from '../models/utility.model';
+// import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-home',
@@ -56,6 +58,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     | ElementRef
     | undefined;
   timerSubscription = new Subscription();
+  isSmallScreen: boolean = false;
+  selectedUpBar = 'Domacinstvo';
 
   constructor(private http: DataService) {}
 
@@ -63,8 +67,25 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loadKategorije();
     this.loadUtilities();
     this.automaticSliding();
+
+    this.updateScreenStatus();
+    // this.mediaMatcher
+    //   .matchMedia('(max-width: 576px)')
+    //   .addListener((mediaQueryListEvent) => {
+    //     this.isSmallScreen = mediaQueryListEvent.matches;
+    //   });
+    // this.isSmallScreen =
+    //   this.mediaMatcher.matchMedia('(max-width: 576px)').matches;
   }
 
+  updateScreenStatus() {
+    this.isSmallScreen = window.innerWidth <= 576;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.updateScreenStatus();
+  }
   automaticSliding() {
     this.timerSubscription = interval(3000).subscribe({
       next: (res) => {

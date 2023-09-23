@@ -343,7 +343,7 @@
       height: calc(100% - 50px);
       &__form{
         background-color: white;
-        width: 100%;
+        width: 80%;
         border-radius: 5px;
         display: flex;
         flex-direction: column;
@@ -1150,9 +1150,9 @@
 }
 
 @media (max-width: 576px) {
-  :host{
-    background-color: pink;
-  }
+  //:host{
+  //  background-color: pink;
+  //}
   .home{
     &__kategorije{
       height: auto;
@@ -1160,6 +1160,22 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      &__upbar{
+        margin-bottom: 20px;
+        height: 50px;
+        width: 250px;
+        font-size: 1em;
+        box-sizing: content-box;
+        padding: 1px 2px 1px 0;
+        border: 0.5px solid lightgray;
+        border-radius: 5px;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='gray' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1.3em;
+        padding-left: 10px;
+      }
       &__sidebar{
         margin: 0;
         height: auto;
@@ -1348,7 +1364,7 @@
           }
           &__code{
             color: gray;
-            font-size: 0.8em;
+            font-size: 0.7em;
           }
           &__price{
             font-weight: bold;
