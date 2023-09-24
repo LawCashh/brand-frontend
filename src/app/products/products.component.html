@@ -129,6 +129,11 @@
         </div>
       </div>
     </div>
+    <div class="products__productlist__proizvodi" *ngIf="isLoadingProducts">
+      <div class="products__productlist__proizvodi__proizvod loader" *ngFor="let product of [0,1,2,3,4,5,6,7,8,9]">
+
+      </div>
+    </div>
     <div class="products__productlist__proizvodi__paginacija">
       <div class="products__productlist__proizvodi__paginacija__prikazi">
         <select id="company-dropdown" [(ngModel)]="selectedPrikazi" name="dropdown-prikazi" >

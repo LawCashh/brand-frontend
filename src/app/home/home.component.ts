@@ -64,11 +64,23 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private http: DataService) {}
 
   ngOnInit() {
-    this.loadKategorije();
-    this.loadUtilities();
-    this.automaticSliding();
+    if (window.innerWidth <= 576) {
+      this.isSmallScreen = true;
+    }
 
-    this.updateScreenStatus();
+    setTimeout(() => {
+      this.loadKategorije();
+      this.loadUtilities();
+      this.automaticSliding();
+
+      this.updateScreenStatus();
+    }, 3000);
+
+    // this.loadKategorije();
+    // this.loadUtilities();
+    // this.automaticSliding();
+    //
+    // this.updateScreenStatus();
     // this.mediaMatcher
     //   .matchMedia('(max-width: 576px)')
     //   .addListener((mediaQueryListEvent) => {

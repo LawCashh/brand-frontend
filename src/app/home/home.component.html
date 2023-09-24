@@ -7,7 +7,14 @@
     <ul class="home__kategorije__sidebar" *ngIf="!loadingMainKategorije && !isSmallScreen">
       <li *ngFor="let mainKategorija of mainKategorije"><a>{{mainKategorija.title}}</a></li>
     </ul>
-    <div class="home__kategorije__slider-div">
+    <div class="home__kategorije__sidebar loader" *ngIf="loadingMainKategorije && !isSmallScreen"
+         [ngStyle]="{height: '100%'}">
+
+    </div>
+    <div class="loader" *ngIf="loadingMainKategorije && isSmallScreen"
+         [ngStyle]="{height: '50px', width: '250px', 'margin-bottom': '20px'}">
+    </div>
+    <div class="home__kategorije__slider-div" *ngIf="!loadingMainKategorije">
       <div class="home__kategorije__slider-div__dots">
         <input *ngFor="let subkategorija of mainKategorije; index as i" type="radio" name="kategorija" id="{{i}}"
                [checked]="selectedCarouselIndex == i"
@@ -27,6 +34,10 @@
         </div>
       </div>
     </div>
+    <div class="loader" *ngIf="loadingMainKategorije && !isSmallScreen" [ngStyle]="{height: '100%'}">
+    </div>
+    <div class="loader" *ngIf="loadingMainKategorije && isSmallScreen" [ngStyle]="{height: '350px', width: '100%'}">
+    </div>
     <div class="home__kategorije__akcije" *ngIf="!loadingDiscountedKategorije">
       <div class="home__kategorije__akcije__kategorija" *ngFor="let discountedKategorija of discountedKategorije">
         <span>{{discountedKategorija.title}}</span>
@@ -34,8 +45,13 @@
       </div>
       <button>POGLEDAJ AKCIJE</button>
     </div>
+    <div class="loader" *ngIf="loadingDiscountedKategorije && !isSmallScreen"
+    [ngStyle]="{height: '100%', 'margin-left': '15px'}">
+    </div>
+    <div class="loader" *ngIf="loadingDiscountedKategorije && isSmallScreen"
+         [ngStyle]="{height: '100px', width: '100%', 'margin-top': '15px'}">
+    </div>
   </div>
-
   <div class="home__izdvajamo" *ngIf="!loadingIzdvajamoKategorije">
     <div class="home__izdvajamo__kategorija">
       <span>
@@ -61,6 +77,11 @@
       </div>
     </div>
   </div>
+  <div class="home__izdvajamo" *ngIf="loadingIzdvajamoKategorije">
+    <div class="home__izdvajamo__kategorija loader"></div>
+    <div class="home__izdvajamo__podkategorije loader">
+    </div>
+  </div>
 <ng-container *ngIf="!loadingRandomSubCategorie1 && !loadingRandomSubCategorie2" >
   <div class="home__subcategory" *ngFor="let subcategory of randomSubcategories; index as i">
     <div class="home__subcategory__titlediv"
@@ -84,6 +105,24 @@
         <span class="home__subcategory__products__product__code">Kod proizvoda:<br>{{product.code}}</span>
         <span class="home__subcategory__products__product__price">{{product.price}}€</span>
         <img src="{{product.imagePath}}" alt="">
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="loadingRandomSubCategorie1 && loadingRandomSubCategorie2">
+  <div class="home__subcategory">
+    <div class="home__subcategory__titlediv loader">
+    </div>
+    <div class="home__subcategory__products">
+      <div class="home__subcategory__products__product loader" *ngFor="let product of [0,1,2,3,4,5,6,7]">
+      </div>
+    </div>
+  </div>
+  <div class="home__subcategory">
+    <div class="home__subcategory__titlediv loader">
+    </div>
+    <div class="home__subcategory__products">
+      <div class="home__subcategory__products__product loader" *ngFor="let product of [0,1,2,3,4,5,6,7]">
       </div>
     </div>
   </div>
@@ -133,14 +172,21 @@
           </span>
       </div>
   </div>
+  <div class="home__proizvodi" *ngIf="loadingRandomProducts">
+    <div class="home__proizvodi__proizvod loader" *ngFor="let product of [0,1,2,3,4,5,6,7,8,9]"
+    [ngStyle]="{height: '150px'}"></div>
+  </div>
   <div class="home__usluge-title">
     Dodatne usluge
   </div>
-  <div class="home__usluge">
+  <div class="home__usluge" *ngIf="!loadingUtilities">
     <div *ngFor="let utility of utilities" class="home__usluge__usluga">
       <img src="{{utility.imagePath}}" alt="" class="home__usluge__usluga__slika">
       <span class="home__usluge__usluga__naslov">{{utility.title}}</span>
       <div class="home__usluge__usluga__ikonica"><img src="{{utility.iconPath}}" alt=""></div>
     </div>
+  </div>
+  <div class="home__usluge" *ngIf="loadingUtilities">
+      <div class="home__usluge__usluga loader" *ngFor="let utility of [0,1,2,3]"></div>
   </div>
 </main>

@@ -24,7 +24,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(private http: DataService) {}
 
   ngOnInit() {
-    this.ucitavanjeProducata();
+    setTimeout(() => {
+      this.ucitavanjeProducata();
+    }, 3000);
+
+    // this.ucitavanjeProducata();
   }
 
   ucitavanjeProducata() {
