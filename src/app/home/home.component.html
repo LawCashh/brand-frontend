@@ -14,7 +14,7 @@
     <div class="loader" *ngIf="loadingMainKategorije && isSmallScreen"
          [ngStyle]="{height: '50px', width: '250px', 'margin-bottom': '20px'}">
     </div>
-    <div class="home__kategorije__slider-div" *ngIf="!loadingMainKategorije">
+    <div class="home__kategorije__slider-div" [ngStyle]="loadingMainKategorije ? {'display': 'none'} : {'display': 'block'}">
       <div class="home__kategorije__slider-div__dots">
         <input *ngFor="let subkategorija of mainKategorije; index as i" type="radio" name="kategorija" id="{{i}}"
                [checked]="selectedCarouselIndex == i"
