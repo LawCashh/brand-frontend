@@ -389,6 +389,7 @@
           height: 100%;
           display: flex;
           align-items: center;
+          justify-content: flex-end;
           &__nazad,&__naprijed,&__stranica{
             width: 20%;
             display: flex;

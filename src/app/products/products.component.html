@@ -16,19 +16,19 @@
       <img src="assets/images/footer/arrow-up.svg" class="products__filters__filter-arrow" alt="">
       <div class="products__filters__filter-brendovi__checkboxlist">
         <label>
-          <input type="checkbox" name="brand1"> A.S.C - HEMIK
+          <input type="checkbox" name="A.S.C - HEMIK" (change)="changeChecked('A.S.C - HEMIK', 'brand')"> A.S.C - HEMIK
         </label>
         <label>
-          <input type="checkbox" name="brand2"> Agro - Trend STR
+          <input type="checkbox" name="Agro - Trend STR" (change)="changeChecked('Agro - Trend STR', 'brand')"> Agro - Trend STR
         </label>
         <label>
-          <input type="checkbox" name="brand3"> Agromarket
+          <input type="checkbox" name="Agromarket" (change)="changeChecked('Agromarket', 'brand')"> Agromarket
         </label>
         <label>
-          <input type="checkbox" name="brand4"> Actiwa
+          <input type="checkbox" name="Actiwa" (change)="changeChecked('Actiwa', 'brand')"> Actiwa
         </label>
         <label>
-          <input type="checkbox" name="brand5"> Al. I. Srl.
+          <input type="checkbox" name="AI. I. SR" (change)="changeChecked('AI. I. SR', 'brand')"> AI. I. SR
         </label>
       </div>
       <button class="products__filters__filter-button">Prikazi sve</button>
@@ -38,19 +38,19 @@
       <img src="assets/images/footer/arrow-up.svg" class="products__filters__filter-arrow" alt="">
       <div class="products__filters__filter-distributeri__checkboxlist">
         <label>
-          <input type="checkbox" name="brand1"> Metalac
+          <input type="checkbox" name="Metalac" (change)="changeChecked('Metalac', 'distributer')"> Metalac
         </label>
         <label>
-          <input type="checkbox" name="brand2"> Andjelic plast D.O.O
+          <input type="checkbox" name="Andjelic plast D.O.O" (change)="changeChecked('Andjelic plast D.O.O', 'distributer')"> Andjelic plast D.O.O
         </label>
         <label>
-          <input type="checkbox" name="brand3"> Plastic D.O.O
+          <input type="checkbox" name="Plastic D.O.O" (change)="changeChecked('Plastic D.O.O', 'distributer')"> Plastic D.O.O
         </label>
         <label>
-          <input type="checkbox" name="brand4"> Modern Trade
+          <input type="checkbox" name="Modern Trade" (change)="changeChecked('Modern Trade', 'distributer')"> Modern Trade
         </label>
         <label>
-          <input type="checkbox" name="brand5"> TDC
+          <input type="checkbox" name="TDC" (change)="changeChecked('TDC', 'distributer')"> TDC
         </label>
       </div>
       <button class="products__filters__filter-button">Prikazi sve</button>
@@ -88,10 +88,12 @@
       </div>
       <div class="products__productlist__filteri__desno" >
         <img src="assets/images/utilities/magnifier-flipped.svg" alt="">
-        <input type="text" name="nazivProizvoda" id="proizvod-input" placeholder="Pretrazi proizvode">
+        <input type="text" name="nazivProizvoda" id="proizvod-input" [(ngModel)]="searchString"
+              (input)="changeSearch()" placeholder="Pretrazi proizvode">
       </div>
     </div>
     <div class="products__productlist__proizvodi" *ngIf="!isLoadingProducts">
+      <div *ngIf="emptyQuery">No results</div>
       <div class="products__productlist__proizvodi__proizvod" *ngFor="let product of products">
         <div class="products__productlist__proizvodi__proizvod__main">
           <div class="products__productlist__proizvodi__proizvod__main__glavno">
@@ -134,19 +136,56 @@
 
       </div>
     </div>
-    <div class="products__productlist__proizvodi__paginacija">
+    <div class="products__productlist__proizvodi__paginacija" *ngIf="!isLoadingProducts">
       <div class="products__productlist__proizvodi__paginacija__prikazi">
-        <select id="company-dropdown" [(ngModel)]="selectedPrikazi" name="dropdown-prikazi" >
-          <option [value]="10">Prikazi 10</option>
-          <!--        ovdje ako bude trebalo ovo da se implementira -->
+        <select id="company-dropdown" [(ngModel)]="selectedPrikazi" (change)="changePrikazi()" name="dropdown-prikazi" >
+          <option value=5>Prikazi 5</option>
+          <option value=10>Prikazi 10</option>
+          <option value=15>Prikazi 15</option>
         </select>
       </div>
       <div class="products__productlist__proizvodi__paginacija__stranice">
-        <div class="products__productlist__proizvodi__paginacija__stranice__nazad"><</div>
-        <div class="products__productlist__proizvodi__paginacija__stranice__stranica">1</div>
-        <div class="products__productlist__proizvodi__paginacija__stranice__stranica">2</div>
-        <div class="products__productlist__proizvodi__paginacija__stranice__stranica">3</div>
-        <div class="products__productlist__proizvodi__paginacija__stranice__naprijed">></div>
+        <button class="products__productlist__proizvodi__paginacija__stranice__nazad"
+                [disabled]="trenutnaStranica==1" (click)="goBack()"
+        ><</button>
+        <ng-container *ngIf="(trenutnaStranica > 1 && trenutnaStranica < brojStranica) && brojStranica>=3">
+          <button class="products__productlist__proizvodi__paginacija__stranice__stranica"
+                  (click)="goBack()">{{trenutnaStranica - 1}}</button>
+          <button class="products__productlist__proizvodi__paginacija__stranice__stranica" disabled>{{trenutnaStranica}}</button>
+          <button class="products__productlist__proizvodi__paginacija__stranice__stranica"
+                  (click)="goForward()">{{trenutnaStranica+1}}</button>
+        </ng-container>
+        <ng-container *ngIf="trenutnaStranica == 1 && brojStranica>=3">
+          <button class="products__productlist__proizvodi__paginacija__stranice__stranica" disabled>{{trenutnaStranica}}</button>
+          <button class="products__productlist__proizvodi__paginacija__stranice__stranica"
+                  (click)="goForward()">{{trenutnaStranica+1}}</button>
+          <button class="products__productlist__proizvodi__paginacija__stranice__stranica"
+                  (click)="goToPage(trenutnaStranica+2)">{{trenutnaStranica+2}}</button>
+        </ng-container>
+        <ng-container *ngIf="trenutnaStranica == brojStranica && brojStranica>=3">
+          <button class="products__productlist__proizvodi__paginacija__stranice__stranica"
+                  (click)="goToPage(trenutnaStranica-2)">{{trenutnaStranica - 2}}</button>
+          <button class="products__productlist__proizvodi__paginacija__stranice__stranica"
+                  (click)="goBack()">{{trenutnaStranica-1}}</button>
+          <button class="products__productlist__proizvodi__paginacija__stranice__stranica" disabled>{{trenutnaStranica}}</button>
+        </ng-container>
+
+        <ng-container *ngIf="brojStranica == 2 && trenutnaStranica == 1">
+          <button class="products__productlist__proizvodi__paginacija__stranice__stranica" disabled>{{trenutnaStranica}}</button>
+          <button class="products__productlist__proizvodi__paginacija__stranice__stranica"
+                  (click)="goForward()">{{trenutnaStranica+1}}</button>
+        </ng-container>
+        <ng-container *ngIf="brojStranica == 2 && trenutnaStranica == 2">
+          <button class="products__productlist__proizvodi__paginacija__stranice__stranica"
+                  (click)="goBack()">{{trenutnaStranica-1}}</button>
+          <button class="products__productlist__proizvodi__paginacija__stranice__stranica" disabled>{{trenutnaStranica}}</button>
+        </ng-container>
+        <ng-container *ngIf="brojStranica == 1">
+          <button class="products__productlist__proizvodi__paginacija__stranice__stranica" disabled>{{trenutnaStranica}}</button>
+        </ng-container>
+        <button class="products__productlist__proizvodi__paginacija__stranice__naprijed"
+                [disabled]="trenutnaStranica==brojStranica" (click)="goForward()"
+        >></button>
       </div>
     </div>
   </div>

@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.automaticSliding();
 
       this.updateScreenStatus();
-    }, 3000);
+    }, 2000);
 
     // this.loadKategorije();
     // this.loadUtilities();
